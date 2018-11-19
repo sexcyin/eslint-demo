@@ -1,6 +1,6 @@
-function foo() {
-  // let str = 'abc';
-  // doSomething();
-  // aa = 1
-  return;
-}
+// function foo() {
+//   let str = 'abc';
+//   doSomething();
+//   aa = 1
+//   return;
+// }

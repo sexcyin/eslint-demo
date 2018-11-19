@@ -53,7 +53,7 @@ module.exports = {
     hot: true,
     // noInfo: true,
     overlay: {
-      warnings: true,
+      warnings: false,
       errors:true
     }
   },

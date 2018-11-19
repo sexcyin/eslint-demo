@@ -5,6 +5,11 @@ module.exports = {
     es6: true
   },
   extends: "eslint:recommended",
+  // extends: "./src/test/.eslintrc.js",
+  // extends: [
+  //   // "eslint:recommended"
+  //   // "standard"
+  // ],
   globals: {
     document: true,
     window: true,
@@ -29,11 +34,11 @@ module.exports = {
     "no-class-assign": 2,
     "no-compare-neg-zero": 2,
     "no-cond-assign": 2,
-    "no-console": 2,
+    "no-console": 1,
     "no-const-assign": 2,
     "no-constant-condition": 2,
     "no-control-regex": 2,
-    "no-debugger": 2,
+    // "no-debugger": 2,
     "no-delete-var": 2,
     "no-dupe-args": 2,
     "no-dupe-class-members": 2,
@@ -66,11 +71,14 @@ module.exports = {
     "no-unsafe-finally": 2,
     "no-unsafe-negation": 2,
     "no-unused-labels": 2,
-    "no-unused-vars": 2,
+    "no-unused-vars": 1,
     "no-useless-escape": 2,
     "require-yield": 2,
     "use-isnan": 2,
     "valid-typeof": 2,
+    "no-use-before-define": 2,
+    "quotes": [ 1, "double" ],
+    // "no-useless-return": "error",
     "jsx-quotes": [2, "prefer-double"], //强制在JSX属性（jsx-quotes）中一致使用双引号
     "react/display-name": 0, //防止在React组件定义中丢失displayName
     "react/forbid-prop-types": [2, { "forbid": ["any"] }], //禁止某些propTypes

@@ -1,12 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import MyScroll from "./my-scroll";
+import "./styles/index.less"
+
 
 class App extends Component {
-  componentDidMount() {
-  }
-  render() {
+  
+  // getItems() {
+  //   return (
+  //     this.state.list.map((item,index) => {
+  //       <div key={index} className="item">
+  //         <img src={item.img} />
+  //         <div className="des">
+  //           <div>{item.des}</div>
+  //           <div>
+  //             <span>{index}</span>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     })
+  //   )
+  // }
+  render () {
     return (
-      <div>hello world</div>
-    )
+      <MyScroll>
+        
+      </MyScroll>
+    );
   }
 }
 

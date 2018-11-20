@@ -1,13 +1,13 @@
 // function foo() { return; }
 
-function foo() {
-  let str = 'abc';
-  document.getElementById('id')
-  // doSomething();
-  /* eslint-disable no-debugger */
-  debugger
-  return;
-}
+// function foo() {
+//   let str = 'abc';
+//   document.getElementById('id')
+//   // doSomething();
+//   /* eslint-disable no-debugger */
+//   debugger
+//   return;
+// }
 
 // function foo() {
 //   if (condition) {

@@ -1,6 +1,7 @@
-const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+
 const rootPath = path.join(__dirname, "../");
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
     path: path.resolve(rootPath, "./dist"), //打包文件的输出路径
     chunkFilename: "chunk.[name]-[hash:8].js"
   },
-  mode: "development",
+  mode: "production",
   module: {
     rules: [
       {
@@ -42,24 +43,19 @@ module.exports = {
       "@": path.join(__dirname, "..", "src")
     }
   },
-  devServer: {
-    historyApiFallback: true,
-    // host: '0.0.0.0',
-    inline: true,
-    disableHostCheck: true,
-    hot: true,
-    // noInfo: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    }
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html", //指定模板路径
       filename: "index.html", //指定文件名
       inject: "body"
-    })
+    }),
+    new CleanWebpackPlugin(
+      ["dist/*"], //匹配删除的文件
+      {
+        root: path.resolve(__dirname, "../"), //根目录
+        verbose: false, //开启在控制台输出信息
+        dry: false //启用删除文件
+      }
+    )
   ]
 };

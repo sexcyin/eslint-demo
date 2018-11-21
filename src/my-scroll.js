@@ -11,6 +11,8 @@ class MyScroll extends Component {
     maxIndex: 100
   };
   prevScrollTop = 0;
+  prevTopDivHeight = 0;
+  prevFootDivHeight = 0;
   componentDidMount() {
     document.addEventListener("scroll", this.scrollHandler);
     this.setState({
@@ -30,15 +32,29 @@ class MyScroll extends Component {
     let max = Math.ceil(scrollHeight / ITEM_HEIGHT);
     if (scrollTop > this.prevScrollTop) {
       console.log('向下');
+      if (footDivHeight > 0 && scrollHeight - footDivHeight - scrollTop <= clientHeight) {
+        console.log('快到footdiv了');
+        this.setState({
+          maxIndex: maxIndex + 20
+        });
+        this.prevTopDivHeight  = this.prevTopDivHeight + 20 * ITEM_HEIGHT;
+        document.getElementById("topdiv").style.height = this.prevTopDivHeight + "px";
+        this.prevFootDivHeight = this.prevFootDivHeight - 20 * ITEM_HEIGHT;
+        document.getElementById("footdiv").style.height = this.prevFootDivHeight + "px";
+        console.log(this.prevFootDivHeight,this.prevTopDivHeight,'down')
+      }
     } else {
       console.log('向上');
       if (topDivHeight > 0 && scrollTop - topDivHeight <= clientHeight) {
-        console.log('到顶了');
+        console.log('快到topdiv了');
         this.setState({
           maxIndex: maxIndex - 20
         });
-        document.getElementById("topdiv").style.height = (maxIndex - 100 - 20) * ITEM_HEIGHT + "px";
-        // document.getElementById("footdiv").style.height = (maxIndex - 100 + 20) * ITEM_HEIGHT + "px";
+        this.prevTopDivHeight  = this.prevTopDivHeight - 20 * ITEM_HEIGHT;
+        document.getElementById("topdiv").style.height = this.prevTopDivHeight + "px";
+        this.prevFootDivHeight = this.prevFootDivHeight + 20 * ITEM_HEIGHT;
+        document.getElementById("footdiv").style.height = this.prevFootDivHeight + "px";
+        console.log(this.prevFootDivHeight,this.prevTopDivHeight,'up')
       }
     }
     this.prevScrollTop = scrollTop;
@@ -52,7 +68,8 @@ class MyScroll extends Component {
             baseData: baseData.concat(data)
           });
         }, 1000);
-        document.getElementById("topdiv").style.height = (maxIndex - 100 + 20) * ITEM_HEIGHT + "px";
+        this.prevTopDivHeight = (maxIndex - 100 + 20) * ITEM_HEIGHT;
+        document.getElementById("topdiv").style.height = this.prevTopDivHeight + "px";
       } else {
         setTimeout(() => {
           this.setState({

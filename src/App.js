@@ -1,19 +1,28 @@
 import React, { Component } from "react";
-import MyScroll from "./my-scroll";
 import "./styles/index.less";
+import ReactTinyListView from "react-tiny-list-view";
 import data from "./data";
 
 class App extends Component {
   state = {
     dataSource: [],
-    isLoading: false
+    isLoading: false,
+    hasMore: true
   };
+  loadCount = 0;
   componentDidMount() {
     this.setState({
       dataSource: data
     });
   }
   onEndReached = () => {
+    if (this.loadCount >= 7) {
+      this.setState({
+        hasMore: false,
+        isLoading: false
+      })
+      return false;
+    }
     this.setState({
       isLoading: true
     });
@@ -22,9 +31,12 @@ class App extends Component {
         isLoading: false,
         dataSource: this.state.dataSource.concat(data)
       });
+      this.loadCount++;
     }, 1000);
+    return true;
   };
   render() {
+    const { hasMore, isLoading } = this.state;
     const row = (rowData, rowID) => (
       <div key={rowID} className="item">
         <img src={rowData.img} />
@@ -41,12 +53,12 @@ class App extends Component {
       </div>
     );
     return (
-      <MyScroll
+      <ReactTinyListView
         dataSource={this.state.dataSource}
         renderRow={row}
         renderFooter={() => (
           <div style={{ padding: 0, textAlign: "center" }}>
-            {this.state.isLoading ? "Loading..." : "Loaded"}
+            {hasMore ? (isLoading ? "Loading..." : "Loaded") : "No More"}
           </div>
         )}
         pageSize={20}

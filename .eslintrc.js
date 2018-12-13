@@ -38,7 +38,7 @@ module.exports = {
     "no-const-assign": 2,
     "no-constant-condition": 2,
     "no-control-regex": 2,
-    // "no-debugger": 2,
+    "no-debugger": 1,
     "no-delete-var": 2,
     "no-dupe-args": 2,
     "no-dupe-class-members": 2,
@@ -129,5 +129,6 @@ module.exports = {
     "require-await": 1,//禁止使用不带 await 表达式的 async 函数
     "max-params":[1,4], //最大4个参数
     "prefer-template":1, //使用es6的魔伴
+    "no-multi-spaces": 2
   }
 };

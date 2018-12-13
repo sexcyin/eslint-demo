@@ -20,34 +20,34 @@ class TinyListView extends Component {
       document.body.scrollHeight || document.documentElement.scrollHeight || document.documentElement.offsetHeight; // 文档的总高度
     let clientHeight =
       document.documentElement.clientHeight || document.body.clientHeight; // 浏览器视口的高度
-    let topDivHeight = document.getElementById('tiny-list-top').offsetHeight;
-    let footDivHeight = document.getElementById('tiny-list-foot').offsetHeight;
+    let topDivHeight = document.getElementById("tiny-list-top").offsetHeight;
+    let footDivHeight = document.getElementById("tiny-list-foot").offsetHeight;
     let max = Math.ceil(scrollHeight / ITEM_HEIGHT);
     if (scrollTop > this.prevScrollTop) {
-      console.log('向下');
+      console.log("向下");
       if (footDivHeight > 0 && scrollHeight - footDivHeight - scrollTop <= clientHeight) {
-        console.log('快到footdiv了');
+        console.log("快到footdiv了");
         this.setState({
           maxIndex: maxIndex + pageSize
         });
-        this.prevTopDivHeight  = this.prevTopDivHeight + pageSize * ITEM_HEIGHT;
-        document.getElementById("topdiv").style.height = this.prevTopDivHeight + "px";
+        this.prevTopDivHeight = this.prevTopDivHeight + pageSize * ITEM_HEIGHT;
+        document.getElementById("topdiv").style.height = `${this.prevTopDivHeight }px`;
         this.prevFootDivHeight = this.prevFootDivHeight - pageSize * ITEM_HEIGHT;
-        document.getElementById("tiny-list-foot").style.height = this.prevFootDivHeight + "px";
-        console.log(this.prevFootDivHeight,this.prevTopDivHeight,'down')
+        document.getElementById("tiny-list-foot").style.height = `${this.prevFootDivHeight }px`;
+        console.log(this.prevFootDivHeight,this.prevTopDivHeight,"down")
       }
     } else {
-      console.log('向上');
+      console.log("向上");
       if (topDivHeight > 0 && scrollTop - topDivHeight <= clientHeight) {
-        console.log('快到topdiv了');
+        console.log("快到topdiv了");
         this.setState({
           maxIndex: maxIndex - pageSize
         });
-        this.prevTopDivHeight  = this.prevTopDivHeight - pageSize * ITEM_HEIGHT;
-        document.getElementById("tiny-list-top").style.height = this.prevTopDivHeight + "px";
+        this.prevTopDivHeight = this.prevTopDivHeight - pageSize * ITEM_HEIGHT;
+        document.getElementById("tiny-list-top").style.height = `${this.prevTopDivHeight }px`;
         this.prevFootDivHeight = this.prevFootDivHeight + pageSize * ITEM_HEIGHT;
-        document.getElementById("tiny-list-foot").style.height = this.prevFootDivHeight + "px";
-        console.log(this.prevFootDivHeight,this.prevTopDivHeight,'up')
+        document.getElementById("tiny-list-foot").style.height = `${this.prevFootDivHeight }px`;
+        console.log(this.prevFootDivHeight,this.prevTopDivHeight,"up")
       }
     }
     this.prevScrollTop = scrollTop;
@@ -59,7 +59,7 @@ class TinyListView extends Component {
           maxIndex: maxIndex + pageSize
         });
         this.prevTopDivHeight = (maxIndex - maxRenderCount + pageSize) * ITEM_HEIGHT;
-        document.getElementById("tiny-list-top").style.height = this.prevTopDivHeight + "px";
+        document.getElementById("tiny-list-top").style.height = `${this.prevTopDivHeight }px`;
       } else {
         this.props.onEndReached();
       }

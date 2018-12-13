@@ -11,6 +11,7 @@ class App extends Component {
   };
   loadCount = 0;
   componentDidMount() {
+    debugger ;
     this.setState({
       dataSource: data
     });
@@ -38,7 +39,9 @@ class App extends Component {
   render() {
     const { hasMore, isLoading } = this.state;
     const row = (rowData, rowID) => (
-      <div key={rowID} className="item">
+      <div key={rowID}
+        className="item"
+      >
         <img src={rowData.img} />
         <div className="desc">
           <div style={{ marginBottom: "8px", fontWeight: "bold" }}>
